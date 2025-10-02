@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins';
+
+}
+
+:root {
+
+    --primary-background-color: #07092E;
+    --secondary-background-color: #383838;
+    --tertiary-background-color: #525383;
+    --quaternary-background-color: #12121D;
+    --primary-color: #fff;
+    --secondary-color: #842B1A;
+    --tertiary-color: #EA4D2E;
+    --box-shadow: rgba(0, 0, 0, 0.25);
+
+    --box-shadow-vertical: 3px 3px 3px var(--box-shadow);
+    --box-shadow-horizontal: 5px 0px 4px var(--box-shadow);
+
+    --navbar-background: linear-gradient(
+        to right,
+        var(--primary-background-color) 0%,
+        var(--primary-background-color) 50%,
+        var(--secondary-background-color) 100%
+    );
+
+    --aside-background: linear-gradient(
+        to bottom,
+        var(--secondary-background-color) 0%,
+        var(--primary-background-color) 100%
+    );
+
+    --main-background-overlay: linear-gradient(
+        to bottom,
+        rgba(82, 83, 131, 0.8) 0%,
+        rgba(18, 18, 29, 0.8) 100%
+    );
+
+}
+
+body {
+
+    display: flex;
+    font-family: 'Poppins';
+
+}
+
+aside {
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #383838 0%, #07092E 100%);
+    width: 106px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+
+}
+
+aside:hover {
+
+    width: 270px;
+    transition: 0.5s;
+
+}
+
+.logo {
+
+    height: 80px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logo img {
+
+    width: 50px;
+    height: 50px;
+
+}
+
+.menu {
+
+    height: 88%;
+    position: relative;
+
+}
+
+.menu li {
+
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.menu li:hover, .active {
+
+    background: #e0e0e058;
+
+}
+
+.menu a {
+
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+}
+
+.menu a h3 {
+
+    overflow: hidden;
+    font-size: 0.9em;
+    font-weight: 200;
+
+}
+
+.menu a span {
+
+    font-size: 1.2rem;
+
+}
+
+.logout {
+
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+
+
+}
+
+main {
+
+    position: relative;
+    background: #ebe9e9;
+    width: 100%;
+    padding: 1rem;
+    background: var(--main-background-overlay), url("../assets/images/Enhanced-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.header-wraper img{
+
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+
+}
+
+.header-wraper {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: var(--navbar-background);
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 16px;
+    z-index: 1;
+
+}
+
+.header-title h2 {
+
+    color: #fff;
+    font-size: 1rem;
+    width: 250px;
+
+}
+
+.user-info {
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+.notifBell {
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 1rem;
+
+}
+
+.notifBell span.material-symbols-outlined {
+
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #fff;
+
+}
+
+.badge {
+
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+
+
+}
+
+.search-box {
+
+    background: rgb(224, 219, 219);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0.3em 1rem;
+    gap: 10px;
+
+}
+
+
+.search-bar {
+
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 200px;
+
+}
+
+.search-box span {
+
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.search-box span:hover {
+
+    transform: scale(1.1);
+
+}
+
+.main-content {
+
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../styles/landingpage.css">
+    <link rel="icon" href="../assets/images/Logo.png">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+
+</head>
+<body>
+
+    <div class="box-container">
+
+        <div class="left-box">
+            
+            <div class="LogoImage-LogoText">
+                <img src="../assets/images/Logo.png" alt="logo">
+                <h2>Municipal Disaster Risk Reduction Office</h2>
+            </div>
+
+            <div class="descriptions">
+                <h1>Welcome to <br><strong>MDRRMO Candelaria, Quezon</strong></h1><br></h1>
+                <p>Your trusted partner in disaster preparedness, response, and recovery.</p>
+                <p>Stay informed. Stay safe. Together, we build a resilient community.</p>
+            </div>
+
+        </div>
+
+        <div class="right-box">
+
+            <h1>Welcome Back, Admin</h1>
+
+            <div class="input-box">
+                
+                <form id = "login-form">
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="yourmail@gmail.com" required>
+
+                    <label for="password">Password</label>
+                    <div class="password-container">
+
+                        <input type="password" name="password" id="password" placeholder="password" required>
+
+                        <span class="material-symbols-outlined toggle-password" onclick="togglePassword()">
+                            visibility
+                        </span>
+
+                    </div>
+
+                    <!-- <div class="options">
+                        <label class="checkbox-container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            Remember Me
+                        </label>
+                        <a href="#">Forgot Password?</a>
+                    </div> -->
+
+                        <button type="submit">Log In</button>
+
+                    <div class="signup">
+                        <p>Do not have an account? <a href="../pages/register.html">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../scripts/landingpage.js"></script>
+    <script src="../api/login_fetch.js"></script>
+    
+</body>
+</html>

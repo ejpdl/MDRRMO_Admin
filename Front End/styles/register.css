@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Poppins';
+    color: var(--primary-color);
+
+}
+
+:root {
+
+    --primary-background-color: #07092E;
+    --secondary-background-color: #383838;
+    --tertiary-background-color: #525383;
+    --quaternary-background-color: #12121D;
+    --primary-color: #fff;
+    --secondary-color: #842B1A;
+    --tertiary-color: #EA4D2E;
+    --box-shadow: rgba(0, 0, 0, 0.25);
+
+    --box-shadow-vertical: 3px 3px 3px var(--box-shadow);
+    --box-shadow-horizontal: 5px 0px 4px var(--box-shadow);
+
+    --navbar-background: linear-gradient(
+        to right,
+        var(--primary-background-color) 0%,
+        var(--primary-background-color) 50%,
+        var(--secondary-background-color) 100%
+    );
+
+    --aside-background: linear-gradient(
+        to bottom,
+        var(--secondary-background-color) 0%,
+        var(--primary-background-color) 100%
+    );
+
+    --main-background-overlay: linear-gradient(
+        to bottom,
+        rgba(82, 83, 131, 0.8) 0%,
+        rgba(18, 18, 29, 0.8) 100%
+    );
+
+}
+
+main {
+
+    height: 100vh;
+    background: var(--main-background-overlay), url('../assets/images/Enhanced-bg.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container {
+    
+    padding: 40px 60px;
+    width: 90%;
+    height: 550px;
+    background: linear-gradient(135deg, #1f2a9d, #091540);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-vertical);
+    
+}
+
+.header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.header p {
+
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+
+}
+
+.header a {
+
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+.role-sign p {
+    
+    display: flex; 
+    gap: 10px;               
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+
+}
+
+.role-sign label {
+
+    margin-right: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+}
+
+.role-sign input[type="radio"] {
+
+    box-shadow: var(--box-shadow-vertical);
+
+}
+
+.left-right-form {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.left-form input, .right-form input {
+
+    border-radius: 10px;
+    color: black;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    box-shadow: var(--box-shadow-vertical);
+
+}
+
+.left-form label, .right-form label {
+
+    display: flex;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+}
+
+.left-form, .right-form {
+
+    flex: 1;
+
+}
+
+.forms {
+
+    position: relative;
+
+}
+
+button {
+
+    margin-top: 50px;
+    padding: 15px 40px;
+    border-radius: 10px;
+    color: var(--primary-color);
+    border: none;
+    background: var(--tertiary-color);
+    cursor: pointer;
+    width: 30%;
+    position: absolute;
+    right: 0;
+    bottom: -1;
+    box-shadow: var(--box-shadow-vertical);
+
+}
+
+.password-container {
+
+    position: relative;
+    width: 100%;
+
+}
+
+.password-container input {
+
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: black;
+
+}
+
+
+.toggle-password {
+
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 22px;  
+    color: #555;      
+    user-select: none; 
+
+}

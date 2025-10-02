@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs</title>
+
+    <link rel="icon" href="../assets/images/Logo.png">
+
+    <link rel="stylesheet" href="../styles/history.css">
+    <link rel="stylesheet" href="../styles/root.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+
+</head>
+<body>
+
+    <aside>
+
+        <div class="logo">
+            <a href="../pages/dashboard.html">
+                <img src="../assets/images/Logo.png" alt="logo">
+            </a>
+        </div>
+
+        <ul class="menu">
+            <li>
+                <a href="../pages/dashboard.html">
+                    <span class="material-symbols-rounded">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/officers.html">
+                    <span class="material-symbols-rounded">local_police</span>
+                    <h3>Officers</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/users.html">
+                    <span class="material-symbols-rounded">person</span>
+                    <h3>Users</h3>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <span class="material-symbols-rounded">history</span>
+                    <h3>Logs</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/inventory.html">
+                    <span class="material-symbols-rounded">inventory</span>
+                    <h3>Inventory</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/accidents.html">
+                    <span class="material-symbols-rounded">personal_injury</span>
+                    <h3>Accidents</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/settings.html">
+                    <span class="material-symbols-rounded">settings</span>
+                    <h3>Settings</h3>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="../pages/landingpage.html">
+                    <span class="material-symbols-rounded">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main>
+
+        <div class="header-wraper">
+            
+            <div class="header-title">
+                <h2>Municipal Disaster Risk Reduction Office</h2>
+            </div>
+
+            <div class="user-info">
+
+                <div class="notifBell">
+                    <a href="../pages/history.html">
+                        <span class="material-symbols-outlined">notifications_active</span>
+                        <span class="badge"> 3 </span>
+                    </a>
+                </div>
+
+                <div class="search-box">
+                    <span class="material-symbols-rounded">search</span>
+                    <input type="text" class="search-bar" placeholder="Search something..." />
+                </div>
+
+                <img src="../assets/images/placeholder.jpg" alt="profile">
+
+            </div>
+
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <div class="title-button">
+
+                <div class="table-main-title">
+                    <h3> Logs </h3>
+                </div>
+
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Log Level</th>
+                            <th>Timestamp</th>
+                            <th>Log Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="log-icon info">●</span> Info</td>
+                            <td>2024-10-17 00:00:39</td>
+                            <td>cURL error 28: Operation timed out after 20001 ms with 0 bytes received</td>
+                        </tr>
+                        <tr>
+                            <td><span class="log-icon warning">●</span> Warning</td>
+                            <td>2024-10-16 06:40:41</td>
+                            <td>WebSub lease ends at 2024-10-14T04:19:02+00:00 and needs renewal</td>
+                        </tr>
+                        <tr>
+                            <td><span class="log-icon error">●</span> Error</td>
+                            <td>2024-10-16 02:40:05</td>
+                            <td>cURL error 22: The requested URL returned error: 403</td>
+                        </tr>
+                        <tr>
+                            <td><span class="log-icon error">●</span> Error</td>
+                            <td>2024-10-15 12:30:22</td>
+                            <td>Database server encountered a critical error</td>
+                        </tr>
+                        <tr>
+                            <td><span class="log-icon warning">●</span> Warning</td>
+                            <td>2024-10-15 09:20:15</td>
+                            <td>API rate limit exceeded, please try again later</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                
+                <div class="footer-left">
+                    5 of 10 row(s) shown.
+                </div>
+
+                <div class="footer-right">
+                <button class="page-btn">Previous</button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <span>..</span>
+                <button class="page-btn">7</button>
+                <button class="page-btn">8</button>
+                <button class="page-btn">9</button>
+                <button class="page-btn">Next</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    
+</body>
+</html>

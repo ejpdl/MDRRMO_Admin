@@ -1,0 +1,129 @@
+.title-button {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.add-officer-button {
+
+    color: var(--primary-color);
+    border: none;
+    background: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+
+.table-wrapper {
+
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 10px;
+
+}
+
+.table-container {
+
+    width: 100%;
+
+}
+
+.table-main-title {
+
+    color: #fff;
+    padding-bottom: 10px;
+    font-size: 1.8em;
+
+}
+
+.table-container table {
+
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.table-container thead {
+
+    background: var(--primary-background-color);
+    color: #fff;
+
+}
+
+.table-container th {
+
+    padding: 15px 15px;
+    text-align: left;
+    border: 1px solid #fff;
+
+}
+
+.table-container th:last-child,
+.table-container tbody td:last-child {
+
+    width: 190px; 
+    text-align: center;
+    
+}
+
+.table-container tbody {
+
+    background: rgba(255, 255, 255, 0.5);
+
+}
+
+.table-container td {
+
+    padding: 15px 15px;
+    font-size: 1em;
+    color: var(--primary-background-color);
+    border: 1px solid #fff;
+
+}
+
+.table-container tr:nth-child(even) {
+
+    background: gray;
+
+}
+
+.action-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+}
+
+.edit, .delete {
+
+    padding: 5px 20px;
+    border: none;
+    background: var(--primary-background-color);
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-vertical);
+
+}
+
+.delete {
+
+    background: rgb(143, 20, 20);
+
+
+}
+
+.table-container tfoot td{
+
+    font-weight: 400;
+    background: var(--secondary-color);
+    color: #fff;
+
+}
