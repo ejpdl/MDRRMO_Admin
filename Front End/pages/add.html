@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body{
+
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #0c0c0c;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        
+        .modal-container {
+
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+
+        }
+
+        .add-modal {
+
+            background: #07092E;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            height: 80vh;
+            width: 30%;
+            
+
+        }
+
+        form {
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+            margin-bottom: 5px;
+
+        }
+
+        label {
+
+            margin-top: 5px;
+
+        }
+
+        input {
+
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #fff;
+            background: var(--quaternary-background-color);
+            color: var(--primary-color);
+            width: 90%;
+            box-shadow: var(--box-shadow-vertical);
+            margin-bottom: 15px;
+
+        }
+
+        .add-buttons {
+
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+
+        }
+
+        .add-buttons button {
+
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
+        }
+
+        .add-buttons button:nth-child(1) {
+
+            background: #EA4D2E;
+            color: #fff;
+
+        }
+
+        .add-buttons button:hover:nth-child(2) {
+
+            background: #707075;
+            color: var(--primary-color);
+
+        }
+
+        .add-buttons button:hover:nth-child(1) {
+
+            background: #c93113;
+
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+
+    <div class="modal-container" id="add-modal-container">
+
+        <div class="add-modal">
+            <h1>Emergency Contact</h1>
+
+            <hr>
+
+            <div class="add-forms">
+                <form>
+
+                    <label for="offices"> Office </label>
+                    <input type="text" id="offices" placeholder="Offices" required>
+
+                    <label for="hotlines"> Hotline </label>
+                    <input type="text" id="hotlines" placeholder="Hotlines" required>
+
+                    <label for="landlines"> Landline </label>
+                    <input type="text" id="landlines" placeholder="Landlines" required>
+
+                    <label for="phone"> Phone No. </label>
+                    <input type="text" id="phone_number" placeholder="Phone Number" required>
+
+                </form>
+            </div>
+
+            <div class="add-buttons">
+                <button id="confirm-add"> Add Contact </button>
+                <button id="cancel-add"> Cancel </button>
+            </div>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

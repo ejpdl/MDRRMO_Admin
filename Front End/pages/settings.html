@@ -68,8 +68,8 @@
                     <h3>Settings</h3>
                 </a>
             </li>
-            <li class="logout">
-                <a href="../pages/landingpage.html">
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
                     <span class="material-symbols-rounded">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -79,6 +79,20 @@
     </aside>
 
     <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="header-wraper">
             
@@ -165,6 +179,9 @@
                         </span>
 
                     </div>
+
+                    <button class="delete-account" id="open-delete-modal"> Delete your Account </button>
+
                 </div>
 
                 <div class="right">
@@ -176,10 +193,31 @@
 
         </div>
 
+        <div class="modal-container" id="delete-modal-container">
+
+            <div class="delete-modal">
+                <h1>Are you sure you want to Delete your Account?</h1>
+                <p> Once you delete it cannot be undone. </p>
+
+                <div class="buttons">
+                    <button id="confirm-delete"> Yes </button>
+                    <button id="cancel-delete"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="snackbar">
+            <span id="snackbar-message"></span>
+            <button id="snackbar-close">&times;</button>
+        </div>
+
     </main>
     
     <script src="../scripts/settings.js"></script>
     <script src="../api/settings_fetch.js"></script>
+    <script src="../scripts/logout_modal.js"></script>
 
 </body>
 </html>

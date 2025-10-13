@@ -68,8 +68,8 @@
                     <h3>Settings</h3>
                 </a>
             </li>
-            <li class="logout">
-                <a href="../pages/landingpage.html">
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
                     <span class="material-symbols-rounded">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -79,6 +79,20 @@
     </aside>
 
     <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="header-wraper">
             
@@ -100,7 +114,9 @@
                     <input type="text" class="search-bar" placeholder="Search something..." />
                 </div>
 
-                <img src="../assets/images/placeholder.jpg" alt="profile">
+                <a href="../pages/settings.html">
+                    <img src="../assets/images/placeholder.jpg" alt="profile">
+                </a>
 
             </div>
 
@@ -121,37 +137,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Log Level</th>
-                            <th>Timestamp</th>
-                            <th>Log Message</th>
+                            <th>Admin</th>
+                            <th>Action</th>
+                            <th>Description</th>
+                            <th>TimeStamp</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="log-icon info">●</span> Info</td>
-                            <td>2024-10-17 00:00:39</td>
-                            <td>cURL error 28: Operation timed out after 20001 ms with 0 bytes received</td>
-                        </tr>
-                        <tr>
-                            <td><span class="log-icon warning">●</span> Warning</td>
-                            <td>2024-10-16 06:40:41</td>
-                            <td>WebSub lease ends at 2024-10-14T04:19:02+00:00 and needs renewal</td>
-                        </tr>
-                        <tr>
-                            <td><span class="log-icon error">●</span> Error</td>
-                            <td>2024-10-16 02:40:05</td>
-                            <td>cURL error 22: The requested URL returned error: 403</td>
-                        </tr>
-                        <tr>
-                            <td><span class="log-icon error">●</span> Error</td>
-                            <td>2024-10-15 12:30:22</td>
-                            <td>Database server encountered a critical error</td>
-                        </tr>
-                        <tr>
-                            <td><span class="log-icon warning">●</span> Warning</td>
-                            <td>2024-10-15 09:20:15</td>
-                            <td>API rate limit exceeded, please try again later</td>
-                        </tr>
+                    <tbody id="logs-table-body">
+                        
                     </tbody>
                 </table>
             </div>
@@ -159,19 +152,11 @@
             <div class="table-footer">
                 
                 <div class="footer-left">
-                    5 of 10 row(s) shown.
+                   
                 </div>
 
                 <div class="footer-right">
-                <button class="page-btn">Previous</button>
-                <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
-                <button class="page-btn">3</button>
-                <span>..</span>
-                <button class="page-btn">7</button>
-                <button class="page-btn">8</button>
-                <button class="page-btn">9</button>
-                <button class="page-btn">Next</button>
+                
                 </div>
 
             </div>
@@ -179,6 +164,10 @@
         </div>
 
     </main>
+
+    
+    <script src="../scripts/logout_modal.js"></script>
+    <script src="../api/logs_fetch.js"></script>
     
 </body>
 </html>

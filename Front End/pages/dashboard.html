@@ -67,8 +67,8 @@
                     <h3>Settings</h3>
                 </a>
             </li>
-            <li class="logout">
-                <a href="../pages/landingpage.html">
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
                     <span class="material-symbols-rounded">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -78,6 +78,20 @@
     </aside>
 
     <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="header-wraper">
             
@@ -99,8 +113,9 @@
                     <input type="text" class="search-bar" placeholder="Search something..." />
                 </div>
 
-                <img src="../assets/images/placeholder.jpg" alt="profile">
-
+                <a href="../pages/settings.html">
+                    <img src="../assets/images/placeholder.jpg" alt="profile">
+                </a>
             </div>
 
 
@@ -179,7 +194,7 @@
                         <div class="detailTitle-detailMain">
 
                             <span class="detailTitle">
-                                No. of Inventory
+                                No. of Inventories
                             </span>
 
                             <span class="detailMain" id="inventoryCount">
@@ -245,8 +260,41 @@
                 <div class="title-button">
 
                 <h3 class="table-main-title"> In Case of Emergencies </h3>
-                <button class="add-contacts-button">Add Contacts</button>
+                <button class="add-contacts-button" id="open-add-modal">Add Contacts</button>
 
+                <div class="modal-container" id="add-modal-container">
+
+                    <div class="add-modal">
+                        <h1 id="modal-title">Emergency Contact</h1>
+
+                        <hr style="margin-bottom: 20px">
+
+                        <div class="add-forms">
+                            <form id="add-contact-form">
+
+                                <label for="offices"> Office </label>
+                                <input type="text" id="offices" name="offices" placeholder="Ex. MDRRMO" required>
+
+                                <label for="hotlines"> Hotline </label>
+                                <input type="text" id="hotlines" name="hotlines" placeholder="Ex. 116">
+
+                                <label for="landlines"> Landline </label>
+                                <input type="text" id="landlines" name="landlines" placeholder="Ex. (042) 586-1116">
+
+                                <label for="phone"> Phone No. </label>
+                                <input type="text" id="phone_number" name="phone_number" placeholder="Ex. 0920-209-7070">
+
+                                <div class="add-buttons">
+                                    <button type="submit" id="submit-contact-btn"> Add Contact </button>
+                                    <button id="cancel-add" type="reset"> Cancel </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+                   
             </div>
 
                 <table>
@@ -268,9 +316,30 @@
 
         </div>
 
+        <div class="modal-container" id="delete-modal-container">
+
+            <div class="delete-modal">
+                <h1>Are you sure you want to Delete <span id="delete-modal-title"></span> ?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-delete"> Yes </button>
+                    <button id="cancel-delete"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="snackbar">
+            <span id="snackbar-message"></span>
+            <button id="snackbar-close">&times;</button>
+        </div>
+
     </main>
 
     <script src="../api/dashboard_fetch.js"></script>
+    <script src="../scripts/logout_modal.js"></script>
+    <script src="../scripts/add_contact_modal.js"></script>
     
 </body>
 </html>

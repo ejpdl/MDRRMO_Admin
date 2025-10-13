@@ -67,8 +67,8 @@
                     <h3>Settings</h3>
                 </a>
             </li>
-            <li class="logout">
-                <a href="../pages/landingpage.html">
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
                     <span class="material-symbols-rounded">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -78,6 +78,20 @@
     </aside>
 
     <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="header-wraper">
             
@@ -99,7 +113,9 @@
                     <input type="text" class="search-bar" placeholder="Search something..." />
                 </div>
 
-                <img src="../assets/images/placeholder.jpg" alt="profile">
+                <a href="../pages/settings.html">
+                    <img src="../assets/images/placeholder.jpg" alt="profile">
+                </a>
 
             </div>
 
@@ -206,6 +222,7 @@
     </main>
 
     <script src="../scripts/dropdown.js"></script>
+    <script src="../scripts/logout_modal.js"></script>
     
 </body>
 </html>

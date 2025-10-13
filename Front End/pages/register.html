@@ -45,7 +45,7 @@
 
                         <div class="left-form">
                             <label for="email"> Email </label>
-                            <input type="email" id="email" name="email" placeholder="Email" required>
+                            <input type="email" id="email" name="email" placeholder="yourmail@mdrrmo.com" required>
                             
                             <label for="password">Password</label>
                             <div class="password-container">
@@ -70,20 +70,25 @@
                             <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
                             
                             <label for="address"> Address </label>
-                            <input type="text" id="address" name="address" placeholder="123 Main Street" required>
+                            <input type="text" id="address" name="address" placeholder="123 Main Street, Candelaria Quezon" required>
                             
                             <label for="phone"> Phone Number </label>
-                            <input type="number" id="contact" name="contact" placeholder="123456789" required>
+                            <input type="number" id="contact" name="contact" placeholder="0987654321" required>
                         </div>
 
                     </div>
 
-                <button type="submit">Sign Up</button>
+                <button type="submit" class="submit-button">Sign Up</button>
                 <div id="error-msg"></div>
 
                 </form>
             </div>
 
+        </div>
+
+        <div id="snackbar">
+            <span id="snackbar-message"></span>
+            <button id="snackbar-close">&times;</button>
         </div>
 
     </main>

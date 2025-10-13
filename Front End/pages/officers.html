@@ -67,8 +67,8 @@
                     <h3>Settings</h3>
                 </a>
             </li>
-            <li class="logout">
-                <a href="../pages/landingpage.html">
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
                     <span class="material-symbols-rounded">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -78,6 +78,20 @@
     </aside>
 
     <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="header-wraper">
             
@@ -99,7 +113,9 @@
                     <input type="text" class="search-bar" placeholder="Search something..." />
                 </div>
 
-                <img src="../assets/images/placeholder.jpg" alt="profile">
+                <a href="../pages/settings.html">
+                    <img src="../assets/images/placeholder.jpg" alt="profile">
+                </a>
 
             </div>
 
@@ -112,12 +128,12 @@
 
                 <div class="table-main-title">
                     <h3> Officers </h3>
-                    <p> Manage All Officers </p>
+                    <!-- <p> Manage All Officers </p> -->
                 </div>
 
-                <div>
+                <!-- <div>
                     <button class="add-officer-button">Add Officers</button>
-                </div>
+                </div> -->
 
             </div>
 
@@ -130,7 +146,6 @@
                             <th>Address</th>
                             <th>Contact Number</th>
                             <th>Position/Role</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="officers">
@@ -138,7 +153,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5">
+                            <td colspan="4">
                                 Total No. of Officers: <span> -- </span>
                             </td>
                         </tr>
@@ -151,6 +166,7 @@
     </main>
 
     <script src="../api/officers_fetch.js"></script>
+    <script src="../scripts/logout_modal.js"></script>
     
 </body>
 </html>

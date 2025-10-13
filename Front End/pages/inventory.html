@@ -67,8 +67,8 @@
                     <h3>Settings</h3>
                 </a>
             </li>
-            <li class="logout">
-                <a href="../pages/landingpage.html">
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
                     <span class="material-symbols-rounded">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -78,6 +78,20 @@
     </aside>
 
     <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
 
         <div class="header-wraper">
             
@@ -99,7 +113,9 @@
                     <input type="text" class="search-bar" placeholder="Search something..." />
                 </div>
 
-                <img src="../assets/images/placeholder.jpg" alt="profile">
+                <a href="../pages/settings.html">
+                    <img src="../assets/images/placeholder.jpg" alt="profile">
+                </a>
 
             </div>
 
@@ -116,7 +132,35 @@
                 </div>
 
                 <div>
-                    <button class="add-inventory-button">Add Inventory</button>
+                    <button class="add-inventory-button" id="open-add-modal">Add Inventory</button>
+
+                    <div class="modal-container" id="add-modal-container">
+
+                        <div class="add-modal">
+                            <h1 id="modal-title">Inventories</h1>
+
+                            <hr style="margin-bottom: 20px">
+
+                            <div class="add-forms">
+                                <form id="add-inventory-form">
+
+                                    <label for="item_name"> Item Name </label>
+                                    <input type="text" id="item_name" name="item_name" placeholder="Ex. First Aid Kit" required>
+
+                                    <label for="quantity"> Quantity </label>
+                                    <input type="number" id="quantity" name="quantity" placeholder="Ex. 50" required>
+
+                                    <div class="add-buttons">
+                                        <button type="submit" id="submit-inventory-btn"> Add Inventory </button>
+                                        <button id="cancel-add" type="reset"> Cancel </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -147,9 +191,31 @@
 
         </div>
 
+        <div class="modal-container" id="delete-modal-container">
+
+            <div class="delete-modal">
+                <h1>Are you sure you want to Delete <span id="delete-modal-title"></span> ?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-delete"> Yes </button>
+                    <button id="cancel-delete"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="snackbar">
+            <span id="snackbar-message"></span>
+            <button id="snackbar-close">&times;</button>
+        </div>
+
     </main>
     
     <script src="../api/inventories_fetch.js"></script>
+    <script src="../scripts/logout_modal.js"></script>
+    <script src="../scripts/add_inventory_modal.js"></script>
+
 
 </body>
 </html>
