@@ -10,4 +10,5 @@ function togglePassword() {
         passwordField.type = "password";
         toggleIcon.textContent = "visibility";
     }
+    
 }
