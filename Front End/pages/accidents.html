@@ -164,53 +164,13 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Henrietta Foster</td>
-                            <td>0947-347-8094</td>
-                            <td>240 Foun Path</td>
-                            <td>Sep. 25, 2025</td>
-                            <td>9:13 PM</td>
-                            <td>Image</td>
-                            <td>Vehicle Accident</td>
-                            <td class="action-button">
-                                <button class="approved">Approved</button>
-                                <button class="denied">Denied</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Leila Moody</td>
-                            <td>0947-347-8094</td>
-                            <td>240 Foun Path</td>
-                            <td>Sep. 25, 2025</td>
-                            <td>9:13 PM</td>
-                            <td>Image</td>
-                            <td>Fire Accident</td>
-                            <td class="action-button">
-                                <button class="approved">Approved</button>
-                                <button class="denied">Denied</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Eddie Murray</td>
-                            <td>0947-347-8094</td>
-                            <td>240 Foun Path</td>
-                            <td>Sep. 25, 2025</td>
-                            <td>9:13 PM</td>
-                            <td>Image</td>
-                            <td>Vehicle Accident</td>
-                            <td class="action-button">
-                                <button class="approved">Approved</button>
-                                <button class="denied">Denied</button>
-                            </td>
-                        </tr>
-                        
+                    <tbody id="accidents">
                         
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="8">
-                                Total No. of Accidents: <span> 3 </span>
+                                Total No. of Accidents: <span> -- </span>
                             </td>
                         </tr>
                     </tfoot>
@@ -223,6 +183,7 @@
 
     <script src="../scripts/dropdown.js"></script>
     <script src="../scripts/logout_modal.js"></script>
+    <script src="../api/accidents_fetch.js"></script>
     
 </body>
 </html>
