@@ -819,6 +819,35 @@ app.get(`/viewAll/logs`, verifyToken, (req, res) => {
 
 
 
+app.get(`/viewAll/accidents`, (req, res) => {
+
+    const query = `
+    SELECT 
+        ir.id,
+        CONCAT(cc.firstname, ' ', cc.lastname) AS full_name,
+        cc.contact,
+        CONCAT(ir.district, ', ', ir.street) AS accident_address,
+        ir.photo_url,
+        ir.type_of_accident,
+        ir.created_at,
+        ir.status
+    FROM incident_reports ir
+    JOIN client_credentials cc ON ir.user_id = cc.id
+    ORDER BY ir.created_at DESC
+    `;
+
+    connection.query(query, (err, results) => {
+
+        if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+        res.json(results);
+
+    });
+
+});
+
+
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
