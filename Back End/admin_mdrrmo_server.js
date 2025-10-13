@@ -5,6 +5,9 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const { logActivity } = require('./utils/logActivity');
+const connection = require('./utils/database');
+
 const secret = 'ADMIN_ADMIN';
 const salt = 10;
 
@@ -24,29 +27,6 @@ const logger = (req, res, next) => {
 
 app.use(logger);
 
-const connection = mysql.createConnection({
-
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'mdrrmo_app',
-
-});
-
-connection.connect((err) => {
-
-    if(err){
-
-        console.log(`Error Connecting on the database MYSQL: ${err}`);
-        return;
-
-    }else{
-
-        console.log(`Successfully Connected to ${connection.config.database}`);
-
-    }
-
-});
 
 const verifyToken = async (req, res, next) => {
 
@@ -73,6 +53,8 @@ const verifyToken = async (req, res, next) => {
     }
 
 };
+
+// SECTION - ADMIN CREDENTIALS
 
 app.post(`/register/admin`, async (req, res) => {
 
@@ -190,15 +172,31 @@ app.post(`/login/admin`, async (req, res) => {
                 const token = jwt.sign({
 
                     email: user.email,
-                    admin_id: user.admin_id
+                    admin_id: user.admin_id,
+                    role: user.role
 
-                }, secret, { expiresIn: "1h" });
+                }, secret, { expiresIn: "8h" });
+
+                try{
+
+                    await logActivity(
+                        user.admin_id,
+                        "LOGIN",
+                        `NEW LOGIN for ${user.role}`
+                    );
+
+                }catch(logError){
+
+                    console.log(logError);
+
+                }
 
                 return res.status(200).json({
 
                     msg: `Log In Successful`,
                     token: token,
                     admin_id: user.admin_id,
+                    role: user.role,
                     redirectUrl: `../pages/dashboard.html`
 
                 });
@@ -220,6 +218,47 @@ app.post(`/login/admin`, async (req, res) => {
 
 });
 
+app.delete('/delete/account/:admin_id', verifyToken, (req, res) => {
+
+    try {
+
+        const admin_id = req.params.admin_id;
+
+        const query = `DELETE FROM admin_credentials WHERE admin_id = ?`;
+
+        connection.query(query, [admin_id], (err, result) => {
+
+        if(err){
+
+            console.error(err);
+            return res.status(500).json({ message: 'Database Error', details: err.message });
+        
+        }
+
+        if(result.affectedRows === 0){
+
+            return res.status(404).json({ message: 'Account not found' });
+
+        }
+
+            res.status(200).json({ message: 'Account deleted successfully' });
+
+        });
+
+    }catch(error) {
+
+        console.error(error);
+        res.status(500).json({ message: 'Server Error' });
+
+    }
+
+});
+
+
+
+//!SECTION
+
+// SECTION - ADMIN PROFILES 
 
 app.get(`/admin/profile`, verifyToken, (req, res) => {
 
@@ -321,7 +360,6 @@ app.put('/admin/edit_info', verifyToken, (req, res) => {
 });
 
 
-
 app.get(`/admin/status`, verifyToken, (req, res) => {
 
     const query = `
@@ -343,7 +381,6 @@ app.get(`/admin/status`, verifyToken, (req, res) => {
 });
 
 
-
 app.get(`/viewAll/officers`, verifyToken, (req, res) => {
 
     const query = `SELECT admin_id, fullname, admin_address, admin_contact, role FROM admin_credentials`;
@@ -357,21 +394,64 @@ app.get(`/viewAll/officers`, verifyToken, (req, res) => {
     });
 
 });
+//!SECTION
 
-
+// SECTION - INVENTORIES
 app.post(`/add/inventory`, verifyToken, (req, res) => {
 
     try{
 
-        const { item_name, quantity, person_in_charge } = req.body;
+        const { item_name, quantity } = req.body;
 
-        const query = `INSERT INTO inventories (item_name, quantity, person_in_charge) VALUES (?, ?, ?)`;
+        const { admin_id, role } = req.user;
 
-        connection.query(query, [item_name, quantity, person_in_charge], (err, results) => {
+        const person_in_charge = role;
 
-            if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+        const checkQuery = `SELECT * FROM inventories WHERE item_name = ?`;
 
-            res.json({ message: `Inventory Added Successfully` });
+        connection.query(checkQuery, [item_name], (err, results) => {
+
+            if(err){
+
+                console.error("DB Error:", err);
+                return res.status(500).json({ error: "Database Error", details: err.message });
+
+            }
+
+            if(results.length > 0){
+
+                return res.status(400).json({ message: "This item already exists in the inventory." });
+
+            }
+
+            const insertQuery = `INSERT INTO inventories (item_name, quantity, person_in_charge) VALUES (?, ?, ?)`;
+
+            connection.query(insertQuery, [item_name, quantity, person_in_charge], async (err2) => {
+
+                if(err2){
+
+                    console.error("Insert Error:", err2);
+                    return res.status(500).json({ error: "Database Error", details: err2.message });
+
+                }
+
+                try{
+
+                    await logActivity(
+                        admin_id,
+                        "ADD",
+                        `Added new inventory item "${item_name}" (Quantity: ${quantity}) by ${role}`
+                    );
+
+                }catch(logError){
+
+                    console.log(logError);
+
+                }
+
+                res.json({ message: "Inventory Added Successfully" });
+
+            });
 
         });
 
@@ -398,6 +478,113 @@ app.get(`/viewAll/inventories`, verifyToken, (req, res) => {
 
 });
 
+
+
+app.get(`/view/inventory/:inventory_id`, verifyToken, (req, res) => {
+
+  const { inventory_id } = req.params;
+
+  const query = 'SELECT * FROM inventories WHERE inventory_id = ?';
+
+  connection.query(query, [inventory_id], (err, result) => {
+
+        if (err) return res.status(500).json({ message: 'Database Error' });
+        
+        if (result.length === 0) return res.status(404).json({ message: 'Inventory not found' });
+        
+        res.json(result[0]);
+  
+  });
+
+});
+
+app.put(`/update/inventory/:inventory_id`, verifyToken, (req, res) => {
+
+  const { inventory_id } = req.params;
+  const { item_name, quantity } = req.body;
+  
+  const { admin_id, role } = req.user;
+
+  const query = `
+    UPDATE inventories
+    SET item_name = ?, quantity = ?, person_in_charge = ?
+    WHERE inventory_id = ?
+  `;
+
+  connection.query(query, [item_name, quantity, role, inventory_id], async (err) => {
+
+        if (err) return res.status(500).json({ message: 'Database Error' });
+
+        await logActivity(admin_id, 'UPDATE', `Updated ${item_name} quantity to ${quantity} by ${role}`);
+
+        res.json({ message: 'Inventory updated successfully' });
+
+  });
+
+});
+
+
+
+app.delete(`/delete/inventory/:inventory_id`, verifyToken, (req, res) => {
+
+    try{
+
+        const { inventory_id } = req.params;
+        const { admin_id, role } = req.user;
+        
+        const getQuery = `SELECT item_name, quantity FROM inventories WHERE inventory_id = ?`;
+
+        connection.query(getQuery, [inventory_id], (err, rows) => {
+
+            if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+            if (rows.length === 0) {
+               
+                return res.status(404).json({ error: "Inventory not found" });
+            
+            }
+
+            const { item_name, quantity } = rows[0];
+
+            const deleteQuery = `DELETE FROM inventories WHERE inventory_id = ?`;
+
+            connection.query(deleteQuery, [inventory_id], async (err, result) => {
+
+                if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+                try{
+
+                    await logActivity(
+                        admin_id, 
+                        'DELETE', 
+                        `Deleted ${item_name} with quantity of ${quantity} by ${role}`
+                    );
+
+                }catch(error){
+
+                    console.log(error);
+
+                }
+
+                res.json({ message: `Inventory Deleted Successfully` });
+
+            });
+
+        })
+
+        
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+});
+
+
+//!SECTION
+
+// SECTION - USERS
 app.get(`/viewAll/users`, verifyToken, (req, res) => {
 
     const query = `
@@ -416,17 +603,44 @@ app.get(`/viewAll/users`, verifyToken, (req, res) => {
     });
 
 });
+//!SECTION
 
-
+//SECTION - EMERGENCY CONTACT
 app.post(`/add/contact`, verifyToken, (req, res) => {
 
     const { office_name, hotline, landline, phone_number } = req.body;
 
+    const { admin_id, role } = req.user;
+
     const query = `INSERT INTO emergency_contacts (office_name, hotline, landline, phone_number) VALUES (?, ?, ?, ?)`;
 
-    connection.query(query, [office_name, hotline, landline, phone_number], (err, results) => {
+    connection.query(query, [office_name, hotline, landline, phone_number], async (err, results) => {
 
-        if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+        if(err) {
+
+            if (err.code === 'ER_DUP_ENTRY') {
+
+                return res.status(400).json({ error: 'Duplicate Office', message: 'This office already exists.' });
+                
+            }
+
+            return res.status(500).json({ error: `Database Error`, details: err.message });
+        
+        }
+
+        try{
+
+            await logActivity(
+                admin_id,
+                "ADD",
+                `Added ${office_name} to Emergency Contacts by ${role}`
+            );
+
+        }catch(logError){
+
+            console.log(logError);
+
+        }
 
         res.json({ message: `Contact Added Successfully` });
 
@@ -447,6 +661,161 @@ app.get(`/viewAll/contacts`, verifyToken, (req, res) => {
 
 });
 
+
+app.get(`/view/contact/:contact_id`, verifyToken, (req, res) => {
+
+  const { contact_id } = req.params;
+
+  const query = 'SELECT * FROM emergency_contacts WHERE contact_id = ?';
+
+  connection.query(query, [contact_id], (err, result) => {
+
+        if (err) return res.status(500).json({ message: 'Database Error' });
+        
+        if (result.length === 0) return res.status(404).json({ message: 'Contact not found' });
+        
+        res.json(result[0]);
+  
+  });
+
+});
+
+app.put(`/update/contact/:contact_id`, verifyToken, (req, res) => {
+
+  const { contact_id } = req.params;
+  const { office_name, hotline, landline, phone_number } = req.body;
+
+  const { admin_id, role } = req.user;
+
+  const query = `
+    UPDATE emergency_contacts
+    SET office_name = ?, hotline = ?, landline = ?, phone_number = ?
+    WHERE contact_id = ?
+  `;
+
+  connection.query(query, [office_name, hotline, landline, phone_number, contact_id], async (err) => {
+
+        if (err) return res.status(500).json({ message: 'Database Error' });
+
+        try{
+
+            await logActivity(
+                admin_id,
+                "UPDATE",
+                `Updated ${office_name} to Emergency Contacts by ${role}`
+            );
+
+        }catch(logError){
+
+            console.log(logError);
+
+        }
+
+        res.json({ message: 'Contact updated successfully' });
+
+  });
+
+});
+
+
+app.delete(`/delete/contact/:contact_id`, verifyToken, (req, res) => {
+
+    try{
+
+        const { contact_id } = req.params;
+
+        const { admin_id, role } = req.user;
+
+        const getQuery = `SELECT * FROM emergency_contacts WHERE contact_id = ?`;
+
+        connection.query(getQuery, [contact_id], async (err, rows) => {
+
+            if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+            if(rows.affectedRows === 0) {
+
+                return res.status(404).json({ error: `Contact not found` });
+
+            }
+
+            const { office_name } = rows[0];
+
+            const deleteQuery = `DELETE FROM emergency_contacts WHERE contact_id = ?`;
+
+            connection.query(deleteQuery, [contact_id], async (err, result) => {
+            
+                if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+            });
+
+            try{
+
+                await logActivity(
+                    admin_id,
+                    "DELETE",
+                    `Deleted ${office_name} to Emergency Contacts by ${role}`
+                );
+
+            }catch(logError){
+
+                console.log(logError);
+
+            }
+
+            res.json({ message: `Contact Deleted Successfully` });
+
+        });
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+});
+
+//!SECTION
+
+app.get(`/viewAll/logs`, verifyToken, (req, res) => {
+
+    const { page = 1, limit = 10 } = req.query;
+
+    const offset = (page - 1) * limit;
+
+    const countQuery = `SELECT COUNT(*) AS total FROM admin_logs`;
+
+    connection.query(countQuery, (err, countResult) => {
+
+        if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+        const totalLogs = countResult[0].total;
+
+        const dataQuery = `
+            SELECT al.log_id, ac.fullname, al.action, al.description, al.created_at
+            FROM admin_logs al
+            JOIN admin_credentials ac ON al.admin_id = ac.admin_id
+            ORDER BY al.created_at DESC
+            LIMIT ? OFFSET ?
+        `;
+
+        connection.query(dataQuery, [parseInt(limit), parseInt(offset)], (err2, logs) => {
+
+            if(err2) return res.status(500).json({ error: `Database Error`, details: err2.message });
+
+            res.json({
+
+                logs,
+                total: totalLogs,
+                totalPages: Math.ceil(totalLogs / limit),
+                currentPage: parseInt(page)
+
+            });
+
+        });
+
+    });
+
+});
 
 
 
