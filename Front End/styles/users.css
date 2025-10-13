@@ -63,14 +63,6 @@
 
 }
 
-.table-container th:last-child,
-.table-container tbody td:last-child {
-
-    width: 190px; 
-    text-align: center;
-    
-}
-
 .table-container tbody {
 
     background: rgba(255, 255, 255, 0.5);

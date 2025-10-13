@@ -42,11 +42,15 @@
 
 
 .sort-menu li:first-child {
-    border-radius: 8px 8px 0 0; /* top rounded */
+
+    border-radius: 8px 8px 0 0; 
+
 }
 
 .sort-menu li:last-child {
-    border-radius: 0 0 8px 8px; /* bottom rounded */
+
+    border-radius: 0 0 8px 8px;
+
 }
 
 .sort-menu li:hover {
@@ -74,6 +78,7 @@
     padding: 5px 10px;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: var(--box-shadow-vertical);
 
 }
 
@@ -85,6 +90,7 @@
     color: var(--default-color);
     cursor: pointer;
     font-size: 0.9em;
+    transition: all 0.5s ease-in-out;
 
 }
 
@@ -185,13 +191,14 @@
 
 .approved, .denied {
 
-    padding: 15px 15px;
+    padding: 15px;
     border: none;
     background: var(--primary-background-color);
     color: #fff;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: var(--box-shadow-vertical);
+    transition: all 0.5s ease-in-out;
 
 }
 

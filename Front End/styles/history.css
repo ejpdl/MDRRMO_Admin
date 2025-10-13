@@ -114,3 +114,31 @@
     border-color: var(--tertiary-color);
 
 }
+
+.action-log.add {
+
+    color: #168807;
+    font-weight: 600;
+
+}
+
+.action-log.update {
+
+    color: var(--primary-background-color);
+    font-weight: 600;
+
+}
+
+.action-log.delete {
+
+    color: #e40505;
+    font-weight: 600;
+    
+}
+
+.action-log.login {
+
+    color: blue;
+    font-weight: 600;
+
+}

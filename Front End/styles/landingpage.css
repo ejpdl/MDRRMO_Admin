@@ -282,3 +282,65 @@ button[type="submit"] {
     user-select: none; 
 
 }
+
+
+
+#snackbar {
+
+    visibility: hidden;
+    min-width: 300px;
+    width: 50%;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+}
+
+#snackbar.show {
+
+    visibility: visible;
+    opacity: 1;
+
+}
+
+#snackbar button {
+
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1;
+
+}
+
+#snackbar.success {
+
+    background-color: #28a745;
+
+}
+
+#snackbar.error {
+
+  background-color: #e74c3c;
+
+}
+
+#snackbar.info {
+
+  background-color: #17a2b8;
+
+}
