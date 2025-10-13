@@ -32,12 +32,12 @@ login.addEventListener('submit', async (event) => {
 
             localStorage.setItem('token', result.token);
             const tokenPayload = JSON.parse(atob(result.token.split('.')[1]));
-            localStorage.setItem('adminId', tokenPayload.admin_id);
+            localStorage.setItem('admin_id', tokenPayload.admin_id);
             window.location.href = '../pages/dashboard.html'
 
         }else {
 
-            alert(`Incorrect Password or Username`);
+            showSnackbar(`Incorrect Password or Username`, "error");
 
         }
 
@@ -45,8 +45,34 @@ login.addEventListener('submit', async (event) => {
     }catch(error){
 
         console.log(error);
-        alert(`Incorrect Password or Username`);
+        showSnackbar(`Incorrect Password or Username`, "error");
 
     }
 
-})
+});
+
+function showSnackbar(message, type = "success") {
+
+  const snackbar = document.querySelector(`#snackbar`);
+  const messageBox = document.querySelector(`#snackbar-message`);
+  const closeBtn = document.querySelector(`#snackbar-close`);
+
+  messageBox.textContent = message;
+
+  snackbar.className = ''
+  snackbar.classList.add('show', type);
+
+  const timeout = setTimeout(() => {
+
+    snackbar.classList.remove('show');
+
+  }, 3000);
+
+  closeBtn.onclick = () => {
+
+    clearTimeout(timeout);
+    snackbar.classList.remove('show');
+
+  };
+
+}

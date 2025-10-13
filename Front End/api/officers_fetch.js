@@ -29,10 +29,6 @@ async function loadOfficers() {
                 <td> ${officer.admin_address} </td>
                 <td> ${officer.admin_contact} </td>
                 <td> ${officer.role} </td>
-                <td class="action-button">
-                    <button class="edit" onclick="editOfficer(${officer.admin_id})">Edit</button>
-                    <button class="delete" onclick="deleteOfficer(${officer.admin_id})">Delete</button>
-                </td>
             `;
 
             tbody.appendChild(row);

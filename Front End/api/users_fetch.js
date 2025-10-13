@@ -28,11 +28,6 @@ async function loadUsers() {
                 <td> ${user.fullname} </td>
                 <td> ${user.address} </td>
                 <td> ${user.contact} </td>
-                <td class="action-button">
-                    <button class="edit" onclick="editOfficer(${user.id})">Edit</button>
-                    <button class="delete" onclick="deleteOfficer(${user.id})">Delete</button>
-                </td>
-
             `;
 
             tbody.appendChild(row);

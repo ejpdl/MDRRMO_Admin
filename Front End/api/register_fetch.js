@@ -18,7 +18,7 @@ register.addEventListener('submit', async(event) => {
 
     if(admin_password !== confirmPass) {
 
-        errorMsg.textContent = "Passwords do not match!";
+        showSnackbar(`Passwords does not match`, "error");
         return;
 
     }
@@ -54,11 +54,11 @@ register.addEventListener('submit', async(event) => {
 
             localStorage.setItem('token', result.token);
             window.location.href = "../pages/landingpage.html";
-            alert(`Successfully Registered`);
+            showSnackbar(`Successfully Registered`);
 
         }else{
 
-            errorMsg.textContent = result.message || "Something went wrong.";
+            showSnackbar(result.message, "error");
 
         }
 
@@ -70,3 +70,32 @@ register.addEventListener('submit', async(event) => {
     }
 
 });
+
+
+
+
+function showSnackbar(message, type = "success") {
+
+  const snackbar = document.querySelector(`#snackbar`);
+  const messageBox = document.querySelector(`#snackbar-message`);
+  const closeBtn = document.querySelector(`#snackbar-close`);
+
+  messageBox.textContent = message;
+
+  snackbar.className = ''
+  snackbar.classList.add('show', type);
+
+  const timeout = setTimeout(() => {
+
+    snackbar.classList.remove('show');
+
+  }, 3000);
+
+  closeBtn.onclick = () => {
+
+    clearTimeout(timeout);
+    snackbar.classList.remove('show');
+
+  };
+
+}
