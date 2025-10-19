@@ -833,7 +833,13 @@ app.get(`/viewAll/accidents`, (req, res) => {
         ir.status
     FROM incident_reports ir
     JOIN client_credentials cc ON ir.user_id = cc.id
-    ORDER BY ir.created_at DESC
+    ORDER BY 
+        CASE
+            WHEN ir.status = 'pending' THEN 1
+            WHEN ir.status = 'accepted' THEN 2
+            WHEN ir.status = 'denied' THEN 3
+        END,
+        ir.created_at DESC
     `;
 
     connection.query(query, (err, results) => {
@@ -845,6 +851,264 @@ app.get(`/viewAll/accidents`, (req, res) => {
     });
 
 });
+
+
+app.get(`/notifications/count`, verifyToken, async (req, res) => {
+
+    try{
+
+        const query =  `SELECT COUNT(*) AS pendingCount FROM incident_reports WHERE status = 'pending'`; 
+
+        await connection.query(query, (err, rows) => {
+
+            if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+            const count = rows[0].pendingCount;
+
+            res.json({ count });
+
+        });
+
+    }catch(error){
+
+        console.log(error);
+        res.status(500).json({ error: `Database Error`, details: error.message });
+
+    }
+
+});
+
+app.put(`/update/accident/status/:id`, verifyToken, (req, res) => {
+
+    const { id } = req.params;
+    const { action } = req.body;
+
+    const { admin_id, role } = req.user;
+
+    let newStatus = "";
+    if(action === 'accepted') newStatus = 'accepted';
+    else if(action === 'denied') newStatus = 'denied';
+    else return res.status(400).json({ message: `Invalid action type`});
+
+    const query = `UPDATE incident_reports SET status = ? WHERE id = ?`;
+
+    connection.query(query, [newStatus, id], async (err, result) => {
+
+        if(err) return res.status(500).json({ error: `Database Error`, details: err.message });
+
+
+        if(result.affectedRows === 0){
+
+            return res.status(404).json({ message: 'Accident not found' });
+
+        }
+
+        try{
+
+            await logActivity(
+                admin_id,
+                "UPDATE",
+                `Updated Accident Status to ${newStatus} by ${role}`
+            );
+
+        }catch(error2){
+
+            console.log(error2);
+
+        }
+
+        res.json({ message: `Accident ${newStatus} successfully` });
+
+    });
+
+});
+
+
+
+function runQuery(sql, params = []) {
+
+  return new Promise((resolve, reject) => {
+
+    connection.query(sql, params, (err, results) => {
+
+      if (err) return reject(err);
+      resolve(results || []);
+
+    });
+
+  });
+
+}
+
+
+app.get('/search', verifyToken, async (req, res) => {
+
+  const { query, scope } = req.query;
+  const like = `%${query}%`;
+
+  try {
+
+    let results = [];
+
+    console.log("Search Request:", { query, scope });
+
+    switch(scope) {
+
+      case 'users': {
+
+        const rows = await runQuery(
+
+          `SELECT * FROM client_credentials
+           WHERE CONCAT(firstname, ' ', lastname) LIKE ?
+           OR address LIKE ?
+           OR contact LIKE ?`,
+          [like, like, like]
+
+        );
+
+        results = rows;
+        break;
+
+      }
+
+      case 'officers': {
+
+        const rows = await runQuery(
+
+          `SELECT * FROM admin_credentials
+           WHERE fullname LIKE ?
+           OR admin_address LIKE ?
+           OR admin_contact LIKE ?
+           OR role LIKE ?`,
+          [like, like, like, like]
+
+        );
+
+        results = rows;
+        break;
+
+      }
+
+      case 'inventories': {
+
+        const rows = await runQuery(
+
+          `SELECT * FROM inventories
+           WHERE item_name LIKE ?
+           OR quantity LIKE ?`,
+          [like, like]
+
+        );
+
+        results = rows;
+        break;
+
+      }
+
+      case 'accidents': {
+
+        const rows = await runQuery(
+
+          `SELECT * FROM incident_reports
+           WHERE CONCAT(firstname, ' ', lastname) LIKE ?
+           OR CONCAT(district, ', ', street) LIKE ?
+           OR type_of_accident LIKE ?`,
+          [like, like, like]
+
+        );
+
+        results = rows;
+        break;
+
+      }
+
+      default: {
+
+        const accidents = await runQuery(
+
+          `SELECT 
+            'accidents' AS source, 
+            CONCAT(cc.firstname, ' ', cc.lastname) AS full_name, 
+            CONCAT(ir.district, ', ', ir.street) AS accident_address,
+            ir.type_of_accident AS accident,
+            ir.status AS status
+          FROM incident_reports ir
+          JOIN client_credentials cc ON ir.user_id = cc.id
+          WHERE CONCAT(cc.firstname, ' ', cc.lastname) LIKE ? 
+          OR ir.type_of_accident LIKE ? 
+          OR CONCAT(ir.district, ', ', ir.street) LIKE ?
+          OR ir.status LIKE ?`,
+          [like, like, like, like]
+
+        );
+
+        const inventories = await runQuery(
+
+            `SELECT 
+                'inventories' AS source,
+                item_name AS item_name,
+                quantity AS quantity,
+                person_in_charge AS person_in_charge
+            FROM inventories
+            WHERE item_name LIKE ?
+            OR quantity LIKE ?
+            OR person_in_charge LIKE ?
+                `,
+          [like, like, like]
+
+        );
+
+        const users = await runQuery(
+
+          `SELECT 
+            'users' AS source,
+            CONCAT(firstname, ' ', lastname) AS full_name,
+            address AS home_address,
+            contact
+          FROM client_credentials
+          WHERE CONCAT(firstname, ' ', lastname) LIKE ?
+          OR address LIKE ?
+          OR contact LIKE ?`,
+          [like, like, like]
+
+        );
+
+        const officers = await runQuery(
+
+          `SELECT 
+            'officers' AS source,
+            fullname AS full_name,
+            admin_address AS address,
+            admin_contact AS contact,
+            role AS role
+          FROM admin_credentials
+          WHERE fullname LIKE ?
+          OR admin_address LIKE ?
+          OR admin_contact LIKE ?
+          OR role LIKE ?`,
+          [like, like, like, like]
+
+        );
+
+        results = [...accidents, ...inventories, ...users, ...officers];
+        break;
+
+      }
+
+    }
+
+    console.log("Search Results Count:", results.length);
+    res.json(results);
+
+  }catch(err){
+
+    console.error("Search error:", err);
+    res.status(500).json({ message: "Search failed", error: err.message });
+
+  }
+
+});
+
 
 
 
