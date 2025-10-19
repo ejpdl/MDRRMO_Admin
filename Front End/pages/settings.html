@@ -103,15 +103,15 @@
             <div class="user-info">
 
                 <div class="notifBell">
-                    <a href="../pages/history.html">
+                    <a href="../pages/accidents.html" id="notifLink">
                         <span class="material-symbols-outlined">notifications_active</span>
-                        <span class="badge"> 3 </span>
+                        <span class="badge" id="notifBadge"> 0 </span>
                     </a>
                 </div>
 
                 <div class="search-box">
-                    <span class="material-symbols-rounded">search</span>
-                    <input type="text" class="search-bar" placeholder="Search something..." />
+                    <span class="material-symbols-rounded" id="search-icon">search</span>
+                    <input type="text" id="search-bar" class="search-bar" placeholder="Search something..." />
                 </div>
 
                 <img src="../assets/images/placeholder.jpg" alt="profile">
@@ -213,11 +213,21 @@
             <button id="snackbar-close">&times;</button>
         </div>
 
+        <div id="search-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Search Results</h2>
+            <div id="search-results-container"></div>
+        </div>
+        </div>
+
     </main>
     
     <script src="../scripts/settings.js"></script>
     <script src="../api/settings_fetch.js"></script>
     <script src="../scripts/logout_modal.js"></script>
+    <script src="../api/search_fetch.js"></script>
+    <script src="../api/notifications_fetch.js"></script>
 
 </body>
 </html>
