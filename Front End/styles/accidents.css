@@ -157,6 +157,12 @@
     
 }
 
+.table-container tbody td:last-child {
+
+    border-bottom: none;
+
+}
+
 .table-container tbody {
 
     background: rgba(255, 255, 255, 0.5);
@@ -185,11 +191,46 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin: 0;
 
 }
 
-.approved, .denied {
+.table-container tfoot td {
+
+    font-weight: 400;
+    background: var(--secondary-color);
+    color: #fff;
+
+}
+
+
+.status-pending, .status-accepted, .status-denied {
+
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px;
+
+}
+
+.status-pending {
+
+    color: var(--primary-background-color);
+
+}
+
+.status-accepted {
+
+    color: green;
+
+}
+
+.status-denied {
+
+    color: red;
+
+}
+
+
+button.approved, button.denied {
 
     padding: 15px;
     border: none;
@@ -200,19 +241,38 @@
     box-shadow: var(--box-shadow-vertical);
     transition: all 0.5s ease-in-out;
 
+    
 }
 
-.denied {
+button.denied {
 
     background: rgb(143, 20, 20);
 
+}
+
+
+.filter-container {
+
+    display: flex;
+    gap: 20px;
 
 }
 
-.table-container tfoot td {
+.filter-container button {
 
-    font-weight: 400;
-    background: var(--secondary-color);
+    padding: 10px 15px;
+    border: none;
+    box-shadow: var(--box-shadow-vertical);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.filter-container button.active {
+
+    background: var(--tertiary-color);
     color: #fff;
+    font-weight: 500;
 
 }
