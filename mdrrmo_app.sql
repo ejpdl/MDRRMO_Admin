@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2025 at 01:09 PM
+-- Generation Time: Oct 19, 2025 at 12:45 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -65,27 +65,20 @@ CREATE TABLE `admin_logs` (
 --
 
 INSERT INTO `admin_logs` (`log_id`, `admin_id`, `action`, `description`, `created_at`) VALUES
-(1, 1, 'UPDATE', 'Updated First Aid Kit quantity to 50 by chief', '2025-10-13 03:16:36'),
-(2, 1, 'UPDATE', 'Updated First Aid Kit quantity to 501 by chief', '2025-10-13 03:34:57'),
-(3, 1, 'UPDATE', 'Updated First Aid Kitqw quantity to 501 by chief', '2025-10-13 03:35:25'),
-(4, 1, 'UPDATE', 'Updated Water quantity to 12 by chief', '2025-10-13 03:44:46'),
-(5, 1, 'DELETE', 'Deleted qwqw with quantity of 12 by chief', '2025-10-13 03:45:01'),
-(6, 1, 'ADD', 'Added new inventory item \"212\" (Quantity: 12) by chief', '2025-10-13 03:55:29'),
-(7, 1, 'ADD', 'Added new inventory item \"weweewwe\" (Quantity: 23) by chief', '2025-10-13 04:11:22'),
-(8, 2, 'UPDATE', 'Updated wew quantity to 2312 by staff', '2025-10-13 04:11:56'),
-(9, 2, 'DELETE', 'Deleted wew with quantity of 2312 by staff', '2025-10-13 04:15:40'),
-(10, 2, 'ADD', 'Added qw to Emergency Contacts by staff', '2025-10-13 04:24:24'),
-(11, 2, 'UPDATE', 'Updated qwqwqw to Emergency Contacts by staff', '2025-10-13 04:25:42'),
-(12, 2, 'DELETE', 'Deleted 12 to Emergency Contacts by staff', '2025-10-13 04:31:46'),
-(13, 2, 'ADD', 'Added BFP to Emergency Contacts by staff', '2025-10-13 05:04:10'),
-(14, 2, 'UPDATE', 'Updated BFP to Emergency Contacts by staff', '2025-10-13 05:04:42'),
-(15, 2, 'DELETE', 'Deleted BFP to Emergency Contacts by staff', '2025-10-13 05:05:00'),
-(16, 1, 'ADD', 'Added new inventory item \"wew\" (Quantity: 23) by chief', '2025-10-13 05:05:32'),
-(17, 1, 'UPDATE', 'Updated wew12 quantity to 2 by chief', '2025-10-13 05:06:25'),
-(18, 2, 'DELETE', 'Deleted wew12 with quantity of 2 by staff', '2025-10-13 05:06:44'),
-(19, 1, 'LOGIN', 'NEW LOGIN for chief', '2025-10-13 06:37:30'),
-(20, 1, 'LOGIN', 'NEW LOGIN for chief', '2025-10-13 10:32:13'),
-(21, 1, 'UPDATE', 'Updated First Aid Kit quantity to 501 by chief', '2025-10-13 11:04:00');
+(1, 1, 'LOGIN', 'NEW LOGIN for chief', '2025-10-19 10:29:31'),
+(2, 1, 'ADD', 'Added MDRRMO to Emergency Contacts by chief', '2025-10-19 10:33:26'),
+(3, 1, 'ADD', 'Added BFP to Emergency Contacts by chief', '2025-10-19 10:34:21'),
+(4, 1, 'ADD', 'Added PNP to Emergency Contacts by chief', '2025-10-19 10:34:38'),
+(5, 1, 'ADD', 'Added RHU to Emergency Contacts by chief', '2025-10-19 10:34:54'),
+(6, 1, 'ADD', 'Added UCDH to Emergency Contacts by chief', '2025-10-19 10:35:21'),
+(7, 1, 'ADD', 'Added PPMCII to Emergency Contacts by chief', '2025-10-19 10:35:39'),
+(8, 1, 'ADD', 'Added CMH (Nursery) to Emergency Contacts by chief', '2025-10-19 10:35:54'),
+(9, 1, 'UPDATE', 'Updated CMH(Nursery) to Emergency Contacts by chief', '2025-10-19 10:36:25'),
+(10, 1, 'ADD', 'Added new inventory item \"First Aid Kit\" (Quantity: 20) by chief', '2025-10-19 10:38:06'),
+(11, 1, 'ADD', 'Added new inventory item \"Water\" (Quantity: 50) by chief', '2025-10-19 10:38:21'),
+(12, 1, 'UPDATE', 'Updated Water quantity to 100 by chief', '2025-10-19 10:38:43'),
+(13, 1, 'ADD', 'Added new inventory item \"Band Aid\" (Quantity: 1252) by chief', '2025-10-19 10:39:12'),
+(14, 1, 'DELETE', 'Deleted Band Aid with quantity of 1252 by chief', '2025-10-19 10:39:15');
 
 -- --------------------------------------------------------
 
@@ -131,12 +124,13 @@ CREATE TABLE `emergency_contacts` (
 --
 
 INSERT INTO `emergency_contacts` (`contact_id`, `office_name`, `hotline`, `landline`, `phone_number`, `created_at`) VALUES
-(4, 'RHU', NULL, '(042) 585-4205', NULL, '2025-10-01 10:05:04'),
-(44, 'MDRRMO', '116', '(042)-586-116', '0920-209-7070', '2025-10-08 11:02:41'),
-(51, 'qwq', '12', '21', '2', '2025-10-13 09:55:09'),
-(52, 'wetwet', '', '', '2', '2025-10-13 09:55:26'),
-(53, 'qw', NULL, NULL, NULL, '2025-10-13 09:55:53'),
-(55, 'we', '34', '43', '43', '2025-10-13 09:56:24');
+(1, 'MDRRMO', '116', '(042)-586-1116', '0920-209-7070', '2025-10-19 10:33:26'),
+(3, 'BFP', '117', '(042) 585-4472', '0950-055-1171', '2025-10-19 10:34:21'),
+(4, 'PNP', '166', NULL, '0947-347-8094', '2025-10-19 10:34:38'),
+(5, 'RHU', NULL, '(042)585-4205', NULL, '2025-10-19 10:34:54'),
+(6, 'UCDH', NULL, '(042)585-2114', NULL, '2025-10-19 10:35:21'),
+(7, 'PPMCII', NULL, '(042)585-4531', NULL, '2025-10-19 10:35:39'),
+(8, 'CMH(Nursery)', NULL, '(042)585-4281', NULL, '2025-10-19 10:35:54');
 
 -- --------------------------------------------------------
 
@@ -162,10 +156,10 @@ CREATE TABLE `incident_reports` (
 --
 
 INSERT INTO `incident_reports` (`id`, `user_id`, `photo_url`, `region`, `city`, `district`, `street`, `type_of_accident`, `created_at`, `status`) VALUES
-(1, 2, '/uploads/1760344857512--68f30904-add5-4517-9df7-cf5b313c2bda2387868088615419712.jpg', 'Quezon', 'Candelaria', 'Kinatihan II', 'sitio', 'Motorcycle Accident', '2025-10-13 08:40:57', 'accepted'),
-(2, 2, '/uploads/1760345067954--68f30904-add5-4517-9df7-cf5b313c2bda2387868088615419712.jpg', 'Quezon', 'Candelaria', 'Kinatihan II', 'sitio', 'Motorcycle Accident', '2025-10-13 08:44:28', 'resolved'),
-(3, 2, '/uploads/1760345681821--8341bcd1-70c2-4756-a0ff-eaa513cc22473354393655268354748.jpg', 'Quezon', 'Candelaria', 'Pahinga Sur', 'sitio silangan', 'Four Wheels Accident', '2025-10-13 08:54:42', 'denied'),
-(4, 2, '/uploads/1760350794163--17339e35-e04d-49d0-a85e-402475a2d7963819194010433811875.jpg', 'Quezon', 'Candelaria', 'Pahinga Sur', 'cc', 'Pedestrian Accident', '2025-10-13 10:19:54', 'pending');
+(1, 2, '/uploads/1760344857512--68f30904-add5-4517-9df7-cf5b313c2bda2387868088615419712.jpg', 'Quezon', 'Candelaria', 'Kinatihan II', 'sitio', 'Motorcycle Accident', '2025-10-13 08:40:57', 'denied'),
+(2, 2, '/uploads/1760345067954--68f30904-add5-4517-9df7-cf5b313c2bda2387868088615419712.jpg', 'Quezon', 'Candelaria', 'Kinatihan II', 'sitio', 'Motorcycle Accident', '2025-10-13 08:44:28', 'accepted'),
+(3, 2, '/uploads/1760345681821--8341bcd1-70c2-4756-a0ff-eaa513cc22473354393655268354748.jpg', 'Quezon', 'Candelaria', 'Pahinga Sur', 'sitio silangan', 'Four Wheels Accident', '2025-10-13 08:54:42', 'accepted'),
+(4, 2, '/uploads/1760350794163--17339e35-e04d-49d0-a85e-402475a2d7963819194010433811875.jpg', 'Quezon', 'Candelaria', 'Pahinga Sur', 'cc', 'Pedestrian Accident', '2025-10-13 10:19:54', 'accepted');
 
 -- --------------------------------------------------------
 
@@ -187,9 +181,8 @@ CREATE TABLE `inventories` (
 --
 
 INSERT INTO `inventories` (`inventory_id`, `item_name`, `quantity`, `person_in_charge`, `created_at`, `updated_at`) VALUES
-(13, 'First Aid Kit', 501, 'chief', '2025-10-08 09:54:27', '2025-10-13 11:04:00'),
-(23, 'Water', 12, 'chief', '2025-10-13 03:44:31', '2025-10-13 03:44:46'),
-(25, '212', 12, 'chief', '2025-10-13 03:55:29', '2025-10-13 03:55:29');
+(1, 'First Aid Kit', 20, 'chief', '2025-10-19 10:38:06', '2025-10-19 10:38:06'),
+(2, 'Water', 100, 'chief', '2025-10-19 10:38:21', '2025-10-19 10:38:43');
 
 --
 -- Indexes for dumped tables
@@ -251,7 +244,7 @@ ALTER TABLE `admin_credentials`
 -- AUTO_INCREMENT for table `admin_logs`
 --
 ALTER TABLE `admin_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `client_credentials`
@@ -263,7 +256,7 @@ ALTER TABLE `client_credentials`
 -- AUTO_INCREMENT for table `emergency_contacts`
 --
 ALTER TABLE `emergency_contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `incident_reports`
@@ -275,7 +268,7 @@ ALTER TABLE `incident_reports`
 -- AUTO_INCREMENT for table `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
