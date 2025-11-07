@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accidents</title>
+
+    <link rel="icon" href="../assets/images/Logo.png">
+    <link rel="stylesheet" href="../styles/accidents.css">
+    <link rel="stylesheet" href="../styles/root.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+
+</head>
+<body>
+
+    <aside>
+
+        <div class="logo">
+            <a href="../pages/dashboard.html">
+                <img src="../assets/images/Logo.png" alt="logo">
+            </a>
+        </div>
+
+        <ul class="menu">
+            <li>
+                <a href="../pages/dashboard.html">
+                    <span class="material-symbols-rounded">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/officers.html">
+                    <span class="material-symbols-rounded">local_police</span>
+                    <h3>Officers</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/users.html">
+                    <span class="material-symbols-rounded">person</span>
+                    <h3>Users</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/history.html">
+                    <span class="material-symbols-rounded">history</span>
+                    <h3>Logs</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/inventory.html">
+                    <span class="material-symbols-rounded">inventory</span>
+                    <h3>Inventory</h3>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#">
+                    <span class="material-symbols-rounded">personal_injury</span>
+                    <h3>Accidents</h3>
+                </a>
+            </li>
+            <li>
+                <a href="../pages/settings.html">
+                    <span class="material-symbols-rounded">settings</span>
+                    <h3>Settings</h3>
+                </a>
+            </li>
+            <li class="logout" id="open-logout-modal">
+                <a href="#">
+                    <span class="material-symbols-rounded">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main>
+
+        <div class="modal-container" id="logout-modal-container">
+
+            <div class="logout-modal">
+                <h1>Are you sure you want to logout?</h1>
+
+                <div class="buttons">
+                    <button id="confirm-logout"> Yes </button>
+                    <button id="cancel-logout"> Cancel </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="header-wraper">
+            
+            <div class="header-title">
+                <h2>Municipal Disaster Risk Reduction Office</h2>
+            </div>
+
+            <div class="user-info">
+
+                <div class="notifBell">
+                    <a href="../pages/accidents.html" id="notifLink">
+                        <span class="material-symbols-outlined">notifications_active</span>
+                        <span class="badge" id="notifBadge"> 0 </span>
+                    </a>
+                </div>
+
+                <div class="search-box">
+                    <span class="material-symbols-rounded" id="search-icon">search</span>
+                    <input type="text" id="search-bar" class="search-bar" placeholder="Search something..." />
+                </div>
+
+                <a href="../pages/settings.html">
+                    <img src="../assets/images/placeholder.jpg" alt="profile">
+                </a>
+
+            </div>
+
+
+        </div>
+
+        <div class="table-wrapper">
+
+            <div class="title-button">
+
+                <div class="table-main-title">
+                    <h3> Accidents </h3>
+                    <p> Manage All Accidents </p>
+                </div>
+
+
+                <div class="filter-container">
+                    <button class="active" data-name="all"> Show All </button>
+                    <button data-name="pending"> Pending </button>
+                    <button data-name="accepted"> Accepted </button>
+                    <button data-name="denied"> Denied </button>
+                </div>
+
+                <!-- <div class="sort-container">
+
+                    <div class="sort-options" onclick="toggleSortMenu()">
+                        <button class="sort-button">Sort by</button>
+                        <span class="material-symbols-outlined">arrow_drop_down</span>
+                    </div>
+
+                    <ul class="sort-menu" id="sortMenu">
+                        <li>Date Latest</li>
+                        <li>Date Oldest</li>
+                        <li>Time Latest</li>
+                        <li>Time Oldest</li>
+                    </ul>
+                    
+                </div> -->
+
+            </div>
+
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact No.</th>
+                            <th>Address</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Photo</th>
+                            <th>Type of Accident</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accidents">
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                Total No. of Accidents: <span> -- </span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+
+        <div id="snackbar">
+            <span id="snackbar-message"></span>
+            <button id="snackbar-close">&times;</button>
+        </div>
+
+        <div id="search-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Search Results</h2>
+            <div id="search-results-container"></div>
+        </div>
+        </div>
+
+    </main>
+
+    <script src="../scripts/dropdown.js"></script>
+    <script src="../scripts/logout_modal.js"></script>
+    <script src="../api/accidents_fetch.js"></script>
+    <script src="../api/search_fetch.js"></script>
+    <script src="../api/notifications_fetch.js"></script>
+    
+</body>
+</html>
