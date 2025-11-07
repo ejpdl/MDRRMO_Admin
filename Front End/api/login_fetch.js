@@ -33,7 +33,7 @@ login.addEventListener('submit', async (event) => {
             localStorage.setItem('token', result.token);
             const tokenPayload = JSON.parse(atob(result.token.split('.')[1]));
             localStorage.setItem('admin_id', tokenPayload.admin_id);
-            window.location.href = '../pages/dashboard.html'
+            window.location.href = '../Front_End/pages/dashboard.html'
 
         }else {
 

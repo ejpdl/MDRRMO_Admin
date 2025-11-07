@@ -53,7 +53,7 @@ register.addEventListener('submit', async(event) => {
         if(response.ok) {
 
             localStorage.setItem('token', result.token);
-            window.location.href = "../pages/landingpage.html";
+            window.location.href = "../../landingpage.html";
             showSnackbar(`Successfully Registered`);
 
         }else{
