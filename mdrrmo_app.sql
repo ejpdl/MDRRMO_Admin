@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2025 at 12:45 PM
+-- Generation Time: Nov 07, 2025 at 04:36 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,19 +32,11 @@ CREATE TABLE `admin_credentials` (
   `fullname` varchar(255) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
-  `role` enum('chief','inspector','staff') DEFAULT 'staff',
+  `role` enum('admin','local_officer') DEFAULT 'local_officer',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `admin_address` varchar(255) NOT NULL,
   `admin_contact` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_credentials`
---
-
-INSERT INTO `admin_credentials` (`admin_id`, `fullname`, `email`, `admin_password`, `role`, `created_at`, `admin_address`, `admin_contact`) VALUES
-(1, 'Ephraim De Lara', 'ephraim@mdrrmo.com', '$2b$10$DXSkVrCQ2QnruSzxlhSqtOVfLR7zHldbrkY2cq5a6a8nya5/2FTVO', 'chief', '2025-10-01 06:30:46', '#35 Sitio Silangan', '09381689796'),
-(2, 'Katricia Pida', 'kat@mdrrmo.com', '$2b$10$6POI6nA1QoOh6CORmRMX5OfGjZW4XoxCxi1Oxv1GNixciMBMXzLb2', 'staff', '2025-10-01 07:05:55', '#34 Malabanban Norte', '09092999221');
 
 -- --------------------------------------------------------
 
@@ -59,26 +51,6 @@ CREATE TABLE `admin_logs` (
   `description` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_logs`
---
-
-INSERT INTO `admin_logs` (`log_id`, `admin_id`, `action`, `description`, `created_at`) VALUES
-(1, 1, 'LOGIN', 'NEW LOGIN for chief', '2025-10-19 10:29:31'),
-(2, 1, 'ADD', 'Added MDRRMO to Emergency Contacts by chief', '2025-10-19 10:33:26'),
-(3, 1, 'ADD', 'Added BFP to Emergency Contacts by chief', '2025-10-19 10:34:21'),
-(4, 1, 'ADD', 'Added PNP to Emergency Contacts by chief', '2025-10-19 10:34:38'),
-(5, 1, 'ADD', 'Added RHU to Emergency Contacts by chief', '2025-10-19 10:34:54'),
-(6, 1, 'ADD', 'Added UCDH to Emergency Contacts by chief', '2025-10-19 10:35:21'),
-(7, 1, 'ADD', 'Added PPMCII to Emergency Contacts by chief', '2025-10-19 10:35:39'),
-(8, 1, 'ADD', 'Added CMH (Nursery) to Emergency Contacts by chief', '2025-10-19 10:35:54'),
-(9, 1, 'UPDATE', 'Updated CMH(Nursery) to Emergency Contacts by chief', '2025-10-19 10:36:25'),
-(10, 1, 'ADD', 'Added new inventory item \"First Aid Kit\" (Quantity: 20) by chief', '2025-10-19 10:38:06'),
-(11, 1, 'ADD', 'Added new inventory item \"Water\" (Quantity: 50) by chief', '2025-10-19 10:38:21'),
-(12, 1, 'UPDATE', 'Updated Water quantity to 100 by chief', '2025-10-19 10:38:43'),
-(13, 1, 'ADD', 'Added new inventory item \"Band Aid\" (Quantity: 1252) by chief', '2025-10-19 10:39:12'),
-(14, 1, 'DELETE', 'Deleted Band Aid with quantity of 1252 by chief', '2025-10-19 10:39:15');
 
 -- --------------------------------------------------------
 
@@ -102,7 +74,8 @@ CREATE TABLE `client_credentials` (
 --
 
 INSERT INTO `client_credentials` (`id`, `firstname`, `lastname`, `username`, `password`, `created_at`, `address`, `contact`) VALUES
-(2, 'John', 'Doe', 'john@mdrrmo.com', '$2b$10$BbkCx/zmOy59vy.zF/oi2O22/zgA3Win6GvPbhIWvSAcH.k3AiMIS', '2025-10-13 07:38:54', 'Sitio Showlook', '099090909090');
+(1, 'Cyrus', 'Sumague', 'cyrus@mdrrmo.com', '$2b$10$a4m852Gn48jTO8nKI.RDf.CqVgs0IxPi8rEhSPD3LtHn7.vP44u1u', '2025-10-20 01:52:10', '#00 Sitio Showlook, Pahinga Sur Candelaria Quezon', '09123456789'),
+(2, 'Ephraim', 'De Lara', 'EJ', '$2b$10$Rs8NcEAEiFKBdLgFK/RHBeoD8uhLOqt0ptoicgcUx6pvpsjCmqZAu', '2025-10-21 02:58:52', '#35 Sitio Silangan, Pahinga Sur, Candelaria Quezon', '09381689796');
 
 -- --------------------------------------------------------
 
@@ -130,7 +103,7 @@ INSERT INTO `emergency_contacts` (`contact_id`, `office_name`, `hotline`, `landl
 (5, 'RHU', NULL, '(042)585-4205', NULL, '2025-10-19 10:34:54'),
 (6, 'UCDH', NULL, '(042)585-2114', NULL, '2025-10-19 10:35:21'),
 (7, 'PPMCII', NULL, '(042)585-4531', NULL, '2025-10-19 10:35:39'),
-(8, 'CMH(Nursery)', NULL, '(042)585-4281', NULL, '2025-10-19 10:35:54');
+(8, 'CMH', NULL, '(042)585-4281', NULL, '2025-10-19 10:35:54');
 
 -- --------------------------------------------------------
 
@@ -151,16 +124,6 @@ CREATE TABLE `incident_reports` (
   `status` enum('pending','accepted','resolved','denied') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `incident_reports`
---
-
-INSERT INTO `incident_reports` (`id`, `user_id`, `photo_url`, `region`, `city`, `district`, `street`, `type_of_accident`, `created_at`, `status`) VALUES
-(1, 2, '/uploads/1760344857512--68f30904-add5-4517-9df7-cf5b313c2bda2387868088615419712.jpg', 'Quezon', 'Candelaria', 'Kinatihan II', 'sitio', 'Motorcycle Accident', '2025-10-13 08:40:57', 'denied'),
-(2, 2, '/uploads/1760345067954--68f30904-add5-4517-9df7-cf5b313c2bda2387868088615419712.jpg', 'Quezon', 'Candelaria', 'Kinatihan II', 'sitio', 'Motorcycle Accident', '2025-10-13 08:44:28', 'accepted'),
-(3, 2, '/uploads/1760345681821--8341bcd1-70c2-4756-a0ff-eaa513cc22473354393655268354748.jpg', 'Quezon', 'Candelaria', 'Pahinga Sur', 'sitio silangan', 'Four Wheels Accident', '2025-10-13 08:54:42', 'accepted'),
-(4, 2, '/uploads/1760350794163--17339e35-e04d-49d0-a85e-402475a2d7963819194010433811875.jpg', 'Quezon', 'Candelaria', 'Pahinga Sur', 'cc', 'Pedestrian Accident', '2025-10-13 10:19:54', 'accepted');
-
 -- --------------------------------------------------------
 
 --
@@ -171,18 +134,10 @@ CREATE TABLE `inventories` (
   `inventory_id` int(11) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT 0,
-  `person_in_charge` enum('chief','inspector','staff') NOT NULL,
+  `person_in_charge` enum('admin','local_officer') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `inventories`
---
-
-INSERT INTO `inventories` (`inventory_id`, `item_name`, `quantity`, `person_in_charge`, `created_at`, `updated_at`) VALUES
-(1, 'First Aid Kit', 20, 'chief', '2025-10-19 10:38:06', '2025-10-19 10:38:06'),
-(2, 'Water', 100, 'chief', '2025-10-19 10:38:21', '2025-10-19 10:38:43');
 
 --
 -- Indexes for dumped tables
@@ -200,7 +155,7 @@ ALTER TABLE `admin_credentials`
 --
 ALTER TABLE `admin_logs`
   ADD PRIMARY KEY (`log_id`),
-  ADD KEY `admin_id` (`admin_id`);
+  ADD KEY `fk_admin_logs_admin_id` (`admin_id`);
 
 --
 -- Indexes for table `client_credentials`
@@ -221,7 +176,7 @@ ALTER TABLE `emergency_contacts`
 --
 ALTER TABLE `incident_reports`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `fk_incident_reports_user_id` (`user_id`);
 
 --
 -- Indexes for table `inventories`
@@ -238,13 +193,13 @@ ALTER TABLE `inventories`
 -- AUTO_INCREMENT for table `admin_credentials`
 --
 ALTER TABLE `admin_credentials`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admin_logs`
 --
 ALTER TABLE `admin_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `client_credentials`
@@ -256,19 +211,19 @@ ALTER TABLE `client_credentials`
 -- AUTO_INCREMENT for table `emergency_contacts`
 --
 ALTER TABLE `emergency_contacts`
-  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `incident_reports`
 --
 ALTER TABLE `incident_reports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `inventories`
 --
 ALTER TABLE `inventories`
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -278,13 +233,13 @@ ALTER TABLE `inventories`
 -- Constraints for table `admin_logs`
 --
 ALTER TABLE `admin_logs`
-  ADD CONSTRAINT `admin_logs_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin_credentials` (`admin_id`);
+  ADD CONSTRAINT `fk_admin_logs_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin_credentials` (`admin_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `incident_reports`
 --
 ALTER TABLE `incident_reports`
-  ADD CONSTRAINT `incident_reports_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `client_credentials` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_incident_reports_user_id` FOREIGN KEY (`user_id`) REFERENCES `client_credentials` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
