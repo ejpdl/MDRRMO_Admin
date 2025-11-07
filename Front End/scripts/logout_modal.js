@@ -31,7 +31,7 @@ confirm_logout.addEventListener('click', () => {
 
     localStorage.removeItem('token');
 
-    window.location.href = "../pages/landingpage.html";
+    window.location.href = "../../landingpage.html";
 
 });
 
