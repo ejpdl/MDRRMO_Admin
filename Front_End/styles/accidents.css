@@ -1,0 +1,278 @@
+.title-button {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.sort-container {
+
+    position: relative;
+    display: inline-block;
+
+}
+
+.sort-menu {
+
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -23%;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    padding: 0;
+    margin: 5px 0 0;
+    list-style: none;
+    width: 140px;
+    min-width: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: #fff;
+
+}
+
+.sort-menu li {
+
+    padding: 10px 15px;
+    cursor: pointer;
+    color: var(--default-color);
+
+}
+
+
+.sort-menu li:first-child {
+
+    border-radius: 8px 8px 0 0; 
+
+}
+
+.sort-menu li:last-child {
+
+    border-radius: 0 0 8px 8px;
+
+}
+
+.sort-menu li:hover {
+
+    background: var(--primary-background-color);
+    color: #fff;
+
+}
+
+.sort-menu.show {
+
+  display: block;
+  
+}
+
+
+.sort-options {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    border: none;
+    background: var(--secondary-color);
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-vertical);
+
+}
+
+.sort-button {
+
+    border: none;
+    padding: 5px 10px;
+    background: transparent;
+    color: var(--default-color);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.5s ease-in-out;
+
+}
+
+
+.table-wrapper {
+
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 10px;
+
+}
+
+.table-container {
+
+    width: 100%;
+
+}
+
+.table-main-title h3 {
+
+    color: #fff;
+    font-size: 1.8em;
+
+}
+
+.table-main-title p {
+
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 300;
+    opacity: 0.8;
+    padding-bottom: 10px;
+
+}
+
+.table-container table {
+
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.table-container thead {
+
+    background: var(--primary-background-color);
+    color: #fff;
+
+}
+
+.table-container th {
+
+    padding: 15px 15px;
+    text-align: left;
+    border: 1px solid #fff;
+
+}
+
+.table-container th:last-child,
+.table-container tbody td:last-child {
+
+    width: auto; 
+    text-align: center;
+    white-space: nowrap;
+    
+}
+
+.table-container tbody td:last-child {
+
+    border-bottom: none;
+
+}
+
+.table-container tbody {
+
+    background: rgba(255, 255, 255, 0.5);
+
+}
+
+.table-container td {
+
+    padding: 15px 15px;
+    font-size: 1em;
+    color: var(--primary-background-color);
+    border: 1px solid #fff;
+
+}
+
+.table-container tr:nth-child(even) {
+
+    background: gray;
+
+}
+
+
+.action-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.table-container tfoot td {
+
+    font-weight: 400;
+    background: var(--secondary-color);
+    color: #fff;
+
+}
+
+
+.status-pending, .status-accepted, .status-denied {
+
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px;
+
+}
+
+.status-pending {
+
+    color: var(--primary-background-color);
+
+}
+
+.status-accepted {
+
+    color: green;
+
+}
+
+.status-denied {
+
+    color: red;
+
+}
+
+
+button.approved, button.denied {
+
+    padding: 15px;
+    border: none;
+    background: var(--primary-background-color);
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-vertical);
+    transition: all 0.5s ease-in-out;
+
+    
+}
+
+button.denied {
+
+    background: rgb(143, 20, 20);
+
+}
+
+
+.filter-container {
+
+    display: flex;
+    gap: 20px;
+
+}
+
+.filter-container button {
+
+    padding: 10px 15px;
+    border: none;
+    box-shadow: var(--box-shadow-vertical);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.filter-container button.active {
+
+    background: var(--tertiary-color);
+    color: #fff;
+    font-weight: 500;
+
+}

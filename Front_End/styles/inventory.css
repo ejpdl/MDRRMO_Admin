@@ -1,0 +1,236 @@
+.title-button {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.add-inventory-button {
+
+    color: var(--primary-color);
+    border: none;
+    background: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-vertical);
+    transition: all 0.5s ease-in-out;
+
+}
+
+
+.table-wrapper {
+
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 10px;
+
+}
+
+.table-container {
+
+    width: 100%;
+
+}
+
+.table-main-title h3 {
+
+    color: #fff;
+    font-size: 1.8em;
+
+}
+
+.table-main-title p {
+
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 300;
+    opacity: 0.8;
+    padding-bottom: 10px;
+
+}
+
+.table-container table {
+
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.table-container thead {
+
+    background: var(--primary-background-color);
+    color: #fff;
+
+}
+
+.table-container th {
+
+    padding: 15px 15px;
+    text-align: left;
+    border: 1px solid #fff;
+
+}
+
+.table-container th:last-child,
+.table-container tbody td:last-child {
+
+    width: 190px; 
+    text-align: center;
+    
+}
+
+.table-container tbody {
+
+    background: rgba(255, 255, 255, 0.5);
+
+}
+
+.table-container td {
+
+    padding: 15px 15px;
+    font-size: 1em;
+    color: var(--primary-background-color);
+    border: 1px solid #fff;
+
+}
+
+.table-container tr:nth-child(even) {
+
+    background: gray;
+
+}
+
+
+.action-button {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+
+}
+
+.edit, .delete {
+
+    padding: 5px 20px;
+    border: none;
+    background: var(--primary-background-color);
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: var(--box-shadow-vertical);
+    transition: all 0.5s ease-in-out;
+
+}
+
+.delete {
+
+    background: rgb(143, 20, 20);
+
+}
+
+.table-container tfoot td {
+
+    font-weight: 400;
+    background: var(--secondary-color);
+    color: #fff;
+
+}
+
+
+.add-modal {
+
+    background: var(--primary-background-color);
+    color: var(--primary-color);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 40%;
+    
+}
+
+.add-modal h1 {
+
+    font-size: 1.5em;
+    margin-bottom: 15px;
+
+}
+
+.add-forms form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 5px;
+
+}
+
+.add-forms form label {
+
+    font-size: 1.1em;
+
+}
+
+.add-forms form input {
+
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    background: var(--secondary-background-color);
+    color: var(--primary-color);
+    width: 90%;
+    box-shadow: var(--box-shadow-vertical);
+    margin-bottom: 15px;
+    border:none;
+
+}
+
+.add-forms form input:focus {
+
+    border: red 1px solid;
+
+}
+
+.add-buttons {
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+
+}
+
+form .add-buttons button {
+
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+}
+
+form .add-buttons button:nth-child(1) {
+
+    background: #EA4D2E;
+    color: #fff;
+
+}
+
+.add-buttons button:hover:nth-child(2) {
+
+    background: #707075;
+    color: var(--primary-color);
+
+}
+
+.add-buttons button:hover:nth-child(1) {
+
+    background: #c93113;
+
+}
+
